@@ -1,0 +1,27 @@
+#lockContainer {
+    position: absolute;
+    width: 5%;
+    height: 4%;
+    border-radius: 5px;
+    text-align: center;
+    left: 0px;
+    top: 48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.unlocked {
+    background-color: greenyellow;
+    color: black;
+}
+
+.locked {
+    background-color: red;
+    color: white;
+}
+
+body {
+    font-family: raleway;
+    font-size: large;
+}
