@@ -8,8 +8,8 @@ When unlocked, the display will show green and when locked the display shows red
 ![Example](example.jpg)
 
 ## Installation
-- Place hop_vehcontrol in your resources folder.
-- Add start hop_vehcontrol to your server.cfg
+- Place hop_esx_doorlock in your resources folder.
+- Add start hop_esx_doorlock to your server.cfg
 - 
 ## License
 This program Is free software: you can redistribute it And/Or modify it under the terms Of the GNU General Public License As published by the Free Software Foundation, either version 3 Of the License, Or (at your option) any later version.
