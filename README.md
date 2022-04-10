@@ -5,6 +5,8 @@ The configuration and functionality is exactly the same as esx_doorlocks, the on
 
 When unlocked, the display will show green and when locked the display shows red. If the user has keys to the door the [E] prompt will show on the display to toggle the doors state.
 
+![Example](example.jpg)
+
 ## Installation
 - Place hop_vehcontrol in your resources folder.
 - Add start hop_vehcontrol to your server.cfg
