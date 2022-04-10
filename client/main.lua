@@ -70,6 +70,7 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(0)
 		local letSleep = true
+		local hidden = true
 
 		for k,v in ipairs(Config.DoorList) do
 			if v.distanceToPlayer and v.distanceToPlayer < 50 then
@@ -85,13 +86,19 @@ Citizen.CreateThread(function()
 			end
 
 			if v.distanceToPlayer and v.distanceToPlayer < v.maxDistance then
+				hidden = false
 				local size, displayText = 1, _U('unlocked')
 
 				if v.size then size = v.size end
 				if v.locked then displayText = _U('locked') end
 				if v.isAuthorized then displayText = _U('press_button', displayText) end
 
-				ESX.Game.Utils.DrawText3D(v.textCoords, displayText, size)
+				--ESX.Game.Utils.DrawText3D(v.textCoords, displayText, size)
+				
+				SendNUIMessage({
+					type = "show",
+					text = displayText
+				});
 
 				if IsControlJustReleased(0, 38) then
 					if v.isAuthorized then
@@ -99,11 +106,18 @@ Citizen.CreateThread(function()
 						TriggerServerEvent('esx_doorlock:updateState', k, v.locked) -- broadcast new state of the door to everyone
 					end
 				end
-			end
+			end 
 		end
 
 		if letSleep then
 			Citizen.Wait(500)
+		end
+
+		if hidden then
+			Citizen.Wait(300)
+			SendNUIMessage({
+				type = "hide"
+			});
 		end
 	end
 end)

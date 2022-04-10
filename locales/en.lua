@@ -1,5 +1,5 @@
 Locales ['en'] = {
-  ['unlocked'] = '~g~Unlocked~s~',
-  ['locked'] = '~r~Locked~s~',
+  ['unlocked'] = 'Unlocked',
+  ['locked'] = 'Locked',
   ['press_button'] = '[E] %s',
 }

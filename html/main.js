@@ -4,37 +4,31 @@ var text;
 $(document).ready(function() {
     box = $("#lockContainer");
     text = $("#text");
+    box.hide();
 
     window.addEventListener('message', function(event){
-		var data = event.data;
-        switch (data.action) {
-            case "show":
-                box.show();
-                break;
-            case "hide":
-                box.hide();
-                break;
-            case "unlock":
-                unlock();
-                break;
-            case "lock":
-                lock();
-                break;
-            default:
-                console.log("An unknown nui message was received: " + data.Action);
-                break;
+		var item = event.data;
+		if (item.type === "show") {
+            box.fadeIn(400);
+            if (item.text.includes("Un")){
+                unlock(item.text);
+            } else {
+                lock(item.text);
+            }
+        } else if (item.type === "hide") {
+            box.fadeOut(400);
         }
     });
 });
 
-function lock(){
+function lock(content){
     box.removeClass("unlocked");
     box.addClass("locked");
-    text.text("Locked");
+    text.text(content);
 }
 
-function unlock(){
+function unlock(content){
     box.removeClass("locked");
     box.addClass("unlocked");
-    text.text("Unlocked");
+    text.text(content);
 }
