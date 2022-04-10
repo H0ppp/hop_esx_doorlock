@@ -1,4 +1,5 @@
 ESX = nil
+lastMessage = {type="none", text= "none"}
 
 Citizen.CreateThread(function()
 	while ESX == nil do
@@ -94,11 +95,8 @@ Citizen.CreateThread(function()
 				if v.isAuthorized then displayText = _U('press_button', displayText) end
 
 				--ESX.Game.Utils.DrawText3D(v.textCoords, displayText, size)
-				
-				SendNUIMessage({
-					type = "show",
-					text = displayText
-				});
+				message = {type="show", text= displayText}
+				statusUpdate(message)
 
 				if IsControlJustReleased(0, 38) then
 					if v.isAuthorized then
@@ -114,13 +112,23 @@ Citizen.CreateThread(function()
 		end
 
 		if hidden then
-			Citizen.Wait(300)
-			SendNUIMessage({
-				type = "hide"
-			});
+			message = {type="hide"}
+			statusUpdate(message)
 		end
 	end
 end)
+
+function statusUpdate(newMessage)
+	if(newMessage.type ~= lastMessage.type) then 
+		SendNUIMessage(newMessage)
+		lastMessage = newMessage
+	else 
+		if(newMessage.text ~= lastMessage.text) then 
+			SendNUIMessage(newMessage)
+			lastMessage = newMessage
+		end
+	end
+end
 
 function isAuthorized(door)
 	if not ESX or not ESX.PlayerData.job then

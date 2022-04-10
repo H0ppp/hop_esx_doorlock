@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     window.addEventListener('message', function(event){
 		var item = event.data;
-		if (item.type === "show") {
+    	if (item.type === "show") {
             box.fadeIn(400);
             if (item.text.includes("Un")){
                 unlock(item.text);
